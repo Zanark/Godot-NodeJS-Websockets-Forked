@@ -11,6 +11,7 @@ func _ready():
 	
 func setMod(col):
 	modulate = Color(col.r,col.g,col.b)
+	
 func get_input():
 	velo = Vector2.ZERO
 	if game.chat.windowOpen == true:

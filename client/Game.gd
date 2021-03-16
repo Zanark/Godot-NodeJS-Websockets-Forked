@@ -1,6 +1,6 @@
 extends Node
 
-var url = "ws://127.0.0.1:5000"
+var url = "ws://20.84.49.22:5000"
 var ws = null # empty var for WebSocketClient
 var myID = null # 
 var Clients = {} # empty clients dict
