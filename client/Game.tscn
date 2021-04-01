@@ -13,24 +13,23 @@
 [ext_resource path="res://UI/Star.png" type="Texture" id=11]
 [ext_resource path="res://Assets/PixelHouseItch.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Mega Isometric Block Pack/Blocks/Bookshelf 1.png" type="Texture" id=13]
+[ext_resource path="res://Assets/fb.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Mega Isometric Block Pack/Blocks/Metal Table 4.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Mega Isometric Block Pack/Blocks/Bookshelf 4.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Mega Isometric Block Pack/Blocks/Crate 3.png" type="Texture" id=17]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 933.258, 217.087 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 1365.05, 86.7825 )
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 78.5984, 81.0176 )
+[sub_resource type="CircleShape2D" id=3]
+radius = 67.4377
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.6, 0.6, 0.6, 0.341176 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "ChatWindow"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ChatOpen:rect_position")
 tracks/0/interp = 1
@@ -56,8 +55,7 @@ tracks/1/keys = {
 "values": [ Vector2( 20, 740 ), Vector2( 20, 25 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "newMail"
+[sub_resource type="Animation" id=6]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("ChatOpen/Sprite:modulate")
@@ -89,13 +87,13 @@ texture = ExtResource( 12 )
 position = Vector2( -174.372, -156.856 )
 rotation = -0.462512
 z_index = 1
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Room/Area2D"]
 position = Vector2( 2182.05, 841.28 )
 rotation = -0.462512
 z_index = 1
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 [node name="Area2D2" type="Area2D" parent="Room"]
 
@@ -103,13 +101,13 @@ shape = SubResource( 5 )
 position = Vector2( 1308.47, 324.929 )
 rotation = 0.462512
 z_index = 1
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Room/Area2D2"]
 position = Vector2( 460.895, 731.763 )
 rotation = 0.462512
 z_index = 1
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="Bookshelf 4" type="Sprite" parent="Room"]
 position = Vector2( 2466.26, 930.057 )
@@ -132,17 +130,18 @@ texture = ExtResource( 16 )
 position = Vector2( -530.636, 250.771 )
 texture = ExtResource( 15 )
 
-[node name="Table" type="RigidBody2D" parent="Room"]
+[node name="Ball" type="RigidBody2D" parent="Room"]
 z_index = 1
 sleeping = true
 
-[node name="Crate 3" type="Sprite" parent="Room/Table"]
-position = Vector2( 478.582, 414.142 )
-texture = ExtResource( 17 )
+[node name="Crate 3" type="Sprite" parent="Room/Ball"]
+position = Vector2( 489.429, 411.016 )
+scale = Vector2( 0.0710796, 0.0683867 )
+texture = ExtResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Table"]
-position = Vector2( 478.282, 414.402 )
-shape = SubResource( 4 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Ball"]
+position = Vector2( 488.889, 411.574 )
+shape = SubResource( 3 )
 
 [node name="Floor" type="TileMap" parent="Room"]
 position = Vector2( 229.362, 36.1972 )
@@ -184,7 +183,7 @@ tile_data = PoolIntArray( 131078, 19, 0, 917528, 19, 0, 983064, 19, 0, 1048600, 
 [node name="Clients" type="Node2D" parent="Room"]
 
 [node name="Player" parent="Room" instance=ExtResource( 2 )]
-position = Vector2( 640, 360 )
+position = Vector2( 641.414, 360 )
 input_pickable = true
 collision_layer = 1
 collision_mask = 1
@@ -227,7 +226,7 @@ margin_left = 20.0
 margin_top = 740.0
 margin_right = 360.0
 margin_bottom = 1420.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -272,8 +271,8 @@ margin_bottom = 664.0
 text = "Send"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Chat"]
-anims/ChatWindow = SubResource( 2 )
-anims/newMail = SubResource( 3 )
+anims/ChatWindow = SubResource( 5 )
+anims/newMail = SubResource( 6 )
 
 [node name="ChatOpen" type="TextureButton" parent="UI/Chat"]
 margin_left = 20.0
